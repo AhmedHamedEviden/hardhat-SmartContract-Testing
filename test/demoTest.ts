@@ -13,7 +13,7 @@ const setupFixture = deployments.createFixture(async () => {
     const SmartContract = await ethers.deployContract('BasicERC20',
     [coinName,coinsymbol,coinOwner], await ethers.getSigner(coinOwner));
 
-    
+
 
 })
 
