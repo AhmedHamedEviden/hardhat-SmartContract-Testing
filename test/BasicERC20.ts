@@ -13,27 +13,27 @@ describe("BasicERC20", () => {
 		const contract = await ethers.deployContract(
 			"BasicERC20",
 			[name, symbol, owner],
-			await ethers.getSigner(signers.deployer)
+			await ethers.getSigner(owner)
 		)
 
 		return {
 			contract,
 			contractAddress: await contract.getAddress(),
-			deployer: signers.deployer,
+			deployer: owner,
 			accounts: await ethers.getSigners(),
 			contractConstructor: {
 				name,
 				symbol,
 				owner,
+				
 			},
 		}
 	})
 
 	it("Should Return Valid Contract Configurations Passed In Constructor", async () => {
 		const { contractConstructor, contract } = await setupFixture()
-
-		expect(await contract.name()).to.equal(contractConstructor.name)
-		expect(await contract.symbol()).to.equal(contractConstructor.symbol)
+		expect(await contract.name()).to.equal('ProtoToken')
+		expect(await contract.symbol()).to.equal('PT')
 		expect(await contract.owner()).to.equal(contractConstructor.owner)
 	})
 
